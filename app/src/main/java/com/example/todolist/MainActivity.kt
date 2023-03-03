@@ -1,6 +1,7 @@
 package com.example.todolist
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
@@ -23,9 +24,9 @@ class MainActivity : AppCompatActivity() {
         InputText = findViewById(R.id.InputText)
         ButtonAdd = findViewById(R.id.buttonAdd)
         //list
-       var array = mutableListOf<String>()
+       var array = mutableListOf<String>("hicham")
         //show list data in apk
-        ListData.adapter=ArrayAdapter<String>(this,android.R.layout.simple_list_item_2,array)
+        ListData.adapter=ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,array)
         //Button add task
         ButtonAdd.setOnClickListener {
             //input text
@@ -36,11 +37,15 @@ class MainActivity : AppCompatActivity() {
             array.add(Task.toString())
             //show list data in apk
             ListData.adapter=ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,array)
+            InputText.setText("")
         }
         ListData.setOnItemClickListener { adapterView, view, postion, id ->
-            array.removeAt(postion)
-            Toast.makeText(this, "The task has been deleted", Toast.LENGTH_SHORT).show()
-            ListData.adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, array)
+            var intent : Intent = Intent(applicationContext,MainActivity2::class.java)
+            startActivity(intent)
+
+            //array.removeAt(postion)
+            //Toast.makeText(this, "The task has been deleted", Toast.LENGTH_SHORT).show()
+            //ListData.adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, array)
         }
 
     }

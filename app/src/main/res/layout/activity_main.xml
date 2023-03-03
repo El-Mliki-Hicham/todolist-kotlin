@@ -28,13 +28,13 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-        <ListView
-            android:id="@+id/ListData"
-            android:layout_width="363dp"
-            android:layout_height="591dp"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="16dp">
+    <ListView
+        android:id="@+id/ListData"
+        android:layout_width="363dp"
+        android:layout_height="591dp"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="16dp">
 
-        </ListView>
+    </ListView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
