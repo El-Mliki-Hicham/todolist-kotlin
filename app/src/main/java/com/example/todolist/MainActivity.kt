@@ -3,17 +3,13 @@ package com.example.todolist
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ListView
-import android.widget.TextView
+import android.widget.*
+import androidx.recyclerview.widget.RecyclerView
 
 class MainActivity : AppCompatActivity() {
-    lateinit var ListText:TextView
-    lateinit var InputText:EditText
-    lateinit var ButtonAdd:Button
-    lateinit var ButtonDelete:Button
+    lateinit var ListData: ListView
+    lateinit var InputText: EditText
+    lateinit var ButtonAdd: Button
 
 
 
@@ -23,24 +19,29 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-     ListText = findViewById(R.id.ListText)
-     InputText= findViewById(R.id.InputText)
-     ButtonAdd= findViewById(R.id.buttonAdd)
-     ButtonDelete= findViewById(R.id.buttonDelete)
-
-        //Add task
-    ButtonAdd.setOnClickListener{
-        var Task = InputText.text
-       // ListText.text = "$Task"
-        var data = "$Task"
-        var list = mutableListOf<String>()
-        list.add(data)
-
-    }
-        //delete task
-   // ButtonDelete.setOnClickListener{
-
-    //}
+        ListData = findViewById(R.id.ListData)
+        InputText = findViewById(R.id.InputText)
+        ButtonAdd = findViewById(R.id.buttonAdd)
+        //list
+       var array = mutableListOf<String>()
+        //show list data in apk
+        ListData.adapter=ArrayAdapter<String>(this,android.R.layout.simple_list_item_2,array)
+        //Button add task
+        ButtonAdd.setOnClickListener {
+            //input text
+            var Task = InputText.text
+            //test console
+            println(Task)
+            //add value to array
+            array.add(Task.toString())
+            //show list data in apk
+            ListData.adapter=ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,array)
+        }
+        ListData.setOnItemClickListener { adapterView, view, postion, id ->
+            array.removeAt(postion)
+            Toast.makeText(this, "The task has been deleted", Toast.LENGTH_SHORT).show()
+            ListData.adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, array)
+        }
 
     }
 
